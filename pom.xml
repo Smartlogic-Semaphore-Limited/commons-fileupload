@@ -203,23 +203,34 @@
     </contributor>
   </contributors>
 
-  <scm>
-    <connection>scm:git:http://gitbox.apache.org/repos/asf/commons-fileupload.git</connection>
-    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/commons-fileupload.git</developerConnection>
-    <url>https://gitbox.apache.org/repos/asf?p=commons-fileupload.git</url>
-  </scm>
-  <issueManagement>
-    <system>jira</system>
-    <url>https://issues.apache.org/jira/browse/FILEUPLOAD</url>
-  </issueManagement>
-
   <distributionManagement>
     <site>
-      <id>apache.website</id>
-      <name>Apache Commons Site</name>
-      <url>scm:svn:https://svn.apache.org/repos/infra/websites/production/commons/content/proper/commons-fileupload/</url>
+      <id>${project.artifactId}-site</id>
+      <url>/</url>
     </site>
+    <repository>
+      <id>nexus</id>
+      <url>http://cart:8081/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus</id>
+      <url>http://cart:8081/repository/maven-snapshots/</url>
+    </snapshotRepository>
   </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>http://cart:8081/repository/maven-public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -349,6 +360,7 @@
               <exclude>site-content/**</exclude>
               <exclude>src/site/resources/download_lang.cgi</exclude>
               <exclude>src/checkstyle/license-header.txt</exclude>
+              <exclude>Jenkinsfile</exclude>
             </excludes>
           </configuration>
         </plugin><!-- override skip property of parent pom -->

@@ -30,6 +30,7 @@
       <excludes>
         <exclude>**/.classpath</exclude>
         <exclude>**/.project</exclude>
+        <exclude>**/Jenkinsfile</exclude>
         <exclude>**/.settings/</exclude>
         <exclude>**/.checkstyle/</exclude>
         <exclude>**/doap_*.rdf</exclude>
