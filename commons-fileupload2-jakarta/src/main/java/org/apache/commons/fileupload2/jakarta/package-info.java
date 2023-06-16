@@ -17,20 +17,21 @@
 
 /**
  * <p>
- * An implementation of {@link org.apache.commons.fileupload2.FileUpload FileUpload} for use in servlets conforming to the namespace {@code jakarta.servlet}.
+ * An implementation of {@link org.apache.commons.fileupload2.core.AbstractFileUpload} for use in servlets conforming to the namespace
+ * {@code jakarta.servlet}.
  *
  * </p>
  * <p>
  * The following code fragment demonstrates typical usage.
  * </p>
  *
- * <pre>
- * DiskFileItemFactory factory = new DiskFileItemFactory();
+ * <pre>{@code
+ * DiskFileItemFactory factory = DiskFileItemFactory().builder().get();
  * // Configure the factory here, if desired.
  * JakSrvltFileUpload upload = new JakSrvltFileUpload(factory);
  * // Configure the uploader here, if desired.
  * List fileItems = upload.parseRequest(request);
- * </pre>
+ * }</pre>
  * <p>
  * Please see the FileUpload <a href="https://commons.apache.org/fileupload/using.html" target="_top">User Guide</a> for further details and examples of how to
  * use this package.

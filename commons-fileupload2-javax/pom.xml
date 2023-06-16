@@ -26,14 +26,15 @@
 
   <artifactId>commons-fileupload2-javax</artifactId>
 
-  <name>Apache Commons FileUpload Javax Servlet</name>
+  <name>Apache Commons FileUpload Javax</name>
   <description>
-    The Apache Commons FileUpload component provides a simple yet flexible means of adding support for multipart
-    file upload functionality to servlets and web applications.
+    The Apache Commons FileUpload Javax component provides a simple yet flexible means of adding support for multipart
+    file upload functionality to Javax servlets and web applications.
   </description>
 
   <properties>
 	<commons.parent.dir>${basedir}/..</commons.parent.dir>
+	<commons.module.name>org.apache.commons.fileupload2.javax</commons.module.name>
   </properties>
 
   <dependencies>
@@ -62,7 +63,6 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>${commons.io.version}</version>
     </dependency>
   </dependencies>
 

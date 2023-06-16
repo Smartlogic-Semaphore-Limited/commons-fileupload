@@ -18,8 +18,8 @@ package org.apache.commons.fileupload2.jakarta;
 
 import java.io.InputStream;
 
-import org.apache.commons.fileupload2.AbstractSizesTest;
-import org.apache.commons.fileupload2.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload2.core.AbstractSizesTest;
+import org.apache.commons.fileupload2.core.disk.DiskFileItemFactory;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -30,7 +30,7 @@ public class JakartaSizesTest extends AbstractSizesTest<JakartaServletFileUpload
 
     @Override
     protected JakartaServletFileUpload newFileUpload() {
-        return new JakartaServletFileUpload(new DiskFileItemFactory());
+        return new JakartaServletFileUpload(DiskFileItemFactory.builder().get());
     }
 
     @Override

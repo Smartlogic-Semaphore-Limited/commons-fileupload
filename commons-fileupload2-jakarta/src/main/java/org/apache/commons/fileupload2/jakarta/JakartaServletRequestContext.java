@@ -19,16 +19,14 @@ package org.apache.commons.fileupload2.jakarta;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.commons.fileupload2.AbstractRequestContext;
+import org.apache.commons.fileupload2.core.AbstractRequestContext;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Provides access to the request information needed for a request made to an HTTP servlet.
- *
- * @since 1.1
  */
-public class JakartaServletRequestContext extends AbstractRequestContext {
+public class JakartaServletRequestContext extends AbstractRequestContext<HttpServletRequest> {
 
     /**
      * The request for which the context is being provided.
@@ -41,7 +39,7 @@ public class JakartaServletRequestContext extends AbstractRequestContext {
      * @param request The request to which this context applies.
      */
     public JakartaServletRequestContext(final HttpServletRequest request) {
-        super(request::getHeader, request::getContentLength);
+        super(request::getHeader, request::getContentLength, request);
         this.request = request;
     }
 
@@ -69,7 +67,6 @@ public class JakartaServletRequestContext extends AbstractRequestContext {
      * Gets the input stream for the request.
      *
      * @return The input stream for the request.
-     *
      * @throws IOException if a problem occurs.
      */
     @Override

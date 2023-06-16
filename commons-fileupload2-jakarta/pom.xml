@@ -26,14 +26,15 @@
 
   <artifactId>commons-fileupload2-jakarta</artifactId>
 
-  <name>Apache Commons FileUpload Jakarta Servlet</name>
+  <name>Apache Commons FileUpload Jakarta</name>
   <description>
-    The Apache Commons FileUpload component provides a simple yet flexible means of adding support for multipart
-    file upload functionality to servlets and web applications.
+    The Apache Commons FileUpload Jakarta component provides a simple yet flexible means of adding support for multipart
+    file upload functionality to Jakarta servlets and web applications.
   </description>
 
   <properties>
 	<commons.parent.dir>${basedir}/..</commons.parent.dir>
+	<commons.module.name>org.apache.commons.fileupload2.jakarta</commons.module.name>
   </properties>
 
   <dependencies>
@@ -56,7 +57,6 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>${commons.io.version}</version>
     </dependency>
     <dependency>
       <groupId>jakarta.servlet</groupId>
@@ -68,8 +68,8 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>${commons.lang3.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
 </project>

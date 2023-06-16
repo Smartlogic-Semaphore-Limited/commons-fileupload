@@ -64,8 +64,6 @@ Where can I get the latest release?
 -----------------------------------
 You can download source and binaries from our [download page](https://commons.apache.org/proper/commons-fileupload/download_fileupload.cgi).
 
-Alternatively you can pull it from the central Maven repositories:
-
 Alternatively, you can pull it from the central Maven repositories:
 
 ```xml
@@ -81,7 +79,12 @@ The upcoming version 2.0.0 will be:
 ```xml
 <dependency>
   <groupId>org.apache.commons</groupId>
-  <artifactId>commons-fileupload2</artifactId>
+  <artifactId>commons-fileupload2-jakarta</artifactId>
+  <version>2.0.0</version>
+</dependency>
+<dependency>
+  <groupId>org.apache.commons</groupId>
+  <artifactId>commons-fileupload2-javax</artifactId>
   <version>2.0.0</version>
 </dependency>
 ```
@@ -91,7 +94,12 @@ You can experiment today by building from git master or using a snapshot build:
 ```xml
 <dependency>
   <groupId>org.apache.commons</groupId>
-  <artifactId>commons-fileupload2</artifactId>
+  <artifactId>commons-fileupload2-jakarta</artifactId>
+  <version>2.0.0-SNAPSHOT</version>
+</dependency>
+<dependency>
+  <groupId>org.apache.commons</groupId>
+  <artifactId>commons-fileupload2-javax</artifactId>
   <version>2.0.0-SNAPSHOT</version>
 </dependency>
 ```

@@ -20,16 +20,16 @@ import java.io.InputStream;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.fileupload2.AbstractStreamingTest;
+import org.apache.commons.fileupload2.core.AbstractStreamingTest;
 
 /**
  * Unit test for items with varying sizes.
  */
-public class JavaxStreamingTest extends AbstractStreamingTest<ServletFileUpload, HttpServletRequest, ServletRequestContext> {
+public class JavaxStreamingTest extends AbstractStreamingTest<JavaxServletFileUpload, HttpServletRequest, JavaxServletRequestContext> {
 
     @Override
-    protected ServletFileUpload newFileUpload() {
-        return new ServletFileUpload();
+    protected JavaxServletFileUpload newFileUpload() {
+        return new JavaxServletFileUpload();
     }
 
     @Override
@@ -38,8 +38,8 @@ public class JavaxStreamingTest extends AbstractStreamingTest<ServletFileUpload,
     }
 
     @Override
-    protected ServletRequestContext newServletRequestContext(final HttpServletRequest request) {
-        return new ServletRequestContext(request);
+    protected JavaxServletRequestContext newServletRequestContext(final HttpServletRequest request) {
+        return new JavaxServletRequestContext(request);
     }
 
 }

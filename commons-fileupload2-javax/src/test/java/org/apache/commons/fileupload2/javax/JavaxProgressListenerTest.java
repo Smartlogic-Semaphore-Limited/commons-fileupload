@@ -20,17 +20,17 @@ import java.io.InputStream;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.fileupload2.AbstractProgressListenerTest;
-import org.apache.commons.fileupload2.ProgressListener;
+import org.apache.commons.fileupload2.core.AbstractProgressListenerTest;
+import org.apache.commons.fileupload2.core.ProgressListener;
 
 /**
  * Tests the {@link ProgressListener}.
  */
-public class JavaxProgressListenerTest extends AbstractProgressListenerTest<ServletFileUpload, HttpServletRequest> {
+public class JavaxProgressListenerTest extends AbstractProgressListenerTest<JavaxServletFileUpload, HttpServletRequest> {
 
     @Override
-    protected ServletFileUpload newFileUpload() {
-        return new ServletFileUpload();
+    protected JavaxServletFileUpload newFileUpload() {
+        return new JavaxServletFileUpload();
     }
 
     @Override

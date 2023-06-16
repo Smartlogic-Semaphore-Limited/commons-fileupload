@@ -239,7 +239,7 @@
     <commons.componentid>fileupload</commons.componentid>
     <commons.module.name>org.apache.commons.fileupload</commons.module.name>
     <commons.release.version>2.0.0</commons.release.version>
-    <commons.release.desc>in the org.apache.commons.fileupload2 namespace for Java ${maven.compiler.target} or later</commons.release.desc>
+    <commons.release.desc>in the org.apache.commons.fileupload2 namespace for Java 8 or later</commons.release.desc>
 
     <commons.release.2.version>1.5</commons.release.2.version>
     <commons.release.2.desc>in the org.apache.commons.fileupload namespace for Java 6</commons.release.2.desc>
@@ -253,7 +253,7 @@
     <commons.osgi.import>!javax.portlet,*</commons.osgi.import>
     <commons.osgi.dynamicImport>javax.portlet</commons.osgi.dynamicImport>
     <commons.servlet-api.version>2.5</commons.servlet-api.version>
-    <commons.io.version>2.12.0</commons.io.version>
+    <commons.io.version>2.13.0</commons.io.version>
     <commons.lang3.version>3.12.0</commons.lang3.version>
     <japicmp.skip>true</japicmp.skip>
     <clirr.skip>true</clirr.skip>
@@ -269,30 +269,29 @@
     <commons.releaseManagerKey>B6E73D84EA4FCC47166087253FAAD2CD5ECBB314</commons.releaseManagerKey>
   </properties>
 
+  <dependencyManagement>
+	<dependencies>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${commons.junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons.io.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons.lang3.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>validate-main</id>
-            <phase>validate</phase>
-            <configuration>
-              <configLocation>${commons.parent.dir}/src/checkstyle/fileupload_checks.xml</configLocation>
-              <suppressionsLocation>${commons.parent.dir}/src/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
-              <includeTestSourceDirectory>false</includeTestSourceDirectory>
-              <enableRulesSummary>false</enableRulesSummary>
-              <consoleOutput>true</consoleOutput>
-              <failsOnError>true</failsOnError>
-              <linkXRef>false</linkXRef>
-            </configuration>
-            <goals>
-              <goal>checkstyle</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
@@ -317,37 +316,9 @@
           <dependency>
             <groupId>biz.aQute.bnd</groupId>
             <artifactId>biz.aQute.bndlib</artifactId>
-            <version>6.4.0</version>
+            <version>6.4.1</version>
           </dependency>
         </dependencies>
-      </plugin>
-      <plugin>
-        <groupId>org.moditect</groupId>
-        <artifactId>moditect-maven-plugin</artifactId>
-        <version>${moditect-maven-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>add-module-infos</id>
-            <phase>package</phase>
-            <goals>
-              <goal>add-module-info</goal>
-            </goals>
-            <configuration>
-              <jvmVersion>9</jvmVersion>
-              <outputDirectory>${project.build.directory}</outputDirectory>
-              <overwriteExistingFiles>true</overwriteExistingFiles>
-              <module>
-                <moduleInfo>
-                  <name>org.apache.commons.fileupload2</name>
-                  <exports>
-                    !org.apache.commons.fileupload2.impl;
-                    *;
-                  </exports>
-                </moduleInfo>
-              </module>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
     <pluginManagement>
@@ -415,7 +386,6 @@
           <configuration>
             <configLocation>${commons.parent.dir}/src/checkstyle/fileupload_checks.xml</configLocation>
             <suppressionsLocation>${commons.parent.dir}/src/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
-            <includeTestSourceDirectory>false</includeTestSourceDirectory>
             <enableRulesSummary>false</enableRulesSummary>
           </configuration>
         </plugin>
@@ -572,10 +542,42 @@
       </properties>
     </profile>
     <profile>
-      <id>release</id>
+      <id>moditect</id>
+      <activation>
+		<jdk>[9,)</jdk>
+	  </activation>
       <properties>
-        <moditect.skip>false</moditect.skip>
+		<!-- Disable JPMS junk heap until we can get it to work -->
+        <moditect.skip>true</moditect.skip>
       </properties>
+      <build>
+		<plugins>
+          <plugin>
+            <groupId>org.moditect</groupId>
+            <artifactId>moditect-maven-plugin</artifactId>
+            <version>${moditect-maven-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>add-module-infos</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>add-module-info</goal>
+                </goals>
+                <configuration>
+                  <jvmVersion>9</jvmVersion>
+                  <outputDirectory>${project.build.directory}</outputDirectory>
+                  <overwriteExistingFiles>true</overwriteExistingFiles>
+                  <module>
+                    <moduleInfo>
+                      <name>${commons.module.name}</name>
+                    </moduleInfo>
+                  </module>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+		</plugins>
+	  </build>
     </profile>
   </profiles>
   <modules>
