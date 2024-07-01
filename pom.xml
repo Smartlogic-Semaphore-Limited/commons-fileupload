@@ -210,18 +210,18 @@
     </site>
     <repository>
       <id>nexus</id>
-      <url>http://cart:8081/repository/maven-releases/</url>
+      <url>http://sl-cart01:8081/repository/maven-releases/</url>
     </repository>
     <snapshotRepository>
       <id>nexus</id>
-      <url>http://cart:8081/repository/maven-snapshots/</url>
+      <url>http://sl-cart01:8081/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
   <repositories>
     <repository>
       <id>central</id>
-      <url>http://cart:8081/repository/maven-public/</url>
+      <url>http://sl-cart01:8081/repository/maven-public/</url>
       <releases>
         <enabled>true</enabled>
       </releases>
